@@ -5,11 +5,7 @@ import { Button } from "react-native-elements";
 import firebase from "../../firebase/firebase.js";
 import { PageContainer } from '../../components';
 
-const styles = StyleSheet.create({});
-
 const Profile = ({ navigation, userEmail }) => {
-
-  const [error, setError] = useState("");
 
   const signOut = () => {
     firebase

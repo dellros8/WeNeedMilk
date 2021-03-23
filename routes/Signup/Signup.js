@@ -15,7 +15,7 @@ const Signup = ({ navigation }) => {
       .auth()
       .createUserWithEmailAndPassword(email, confirmPassword)
       .then(() => {
-        navigation.navigate("Authenticate");
+        navigation.navigate("authenticate");
       })
       .catch((error) => {
         setError(error.message);

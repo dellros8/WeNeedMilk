@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { ThemeProvider } from "react-native-elements";
+import { ThemeProvider, Text } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import theme from './misc/theme.js';
+import theme from "./misc/theme.js";
 import firebase from "./firebase/firebase.js";
-import { Signup, Login, Profile } from './routes';
+import { Signup, Login, Profile, ShoppingList } from "./routes";
+import { DrawerContent } from './components';
 
 const Drawer = createDrawerNavigator();
 
@@ -28,19 +29,12 @@ const App = () => {
     return (
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <Drawer.Navigator initialRouteName="Signup">
-            <Drawer.Screen
-              name="Authenticate"
-              options={{
-                title: userEmail ? "Profile" : "Login",
-              }}
-            >
+          <Drawer.Navigator initialRouteName="Signup" drawerContent={(props) => <DrawerContent userEmail={userEmail} {...props} />}>
+            <Drawer.Screen name="authenticate">
               {(props) => (userEmail ? <Profile {...props} userEmail={userEmail} /> : <Login {...props} />)}
             </Drawer.Screen>
-            {!userEmail && <Drawer.Screen name="Signup" component={Signup} />}
-            {/* <Stack.Screen name="AddShoppingList" component={AddShoppingListRoute} />
-          <Stack.Screen name="CreateShoppingList" component={CreateShoppingListRoute} />
-        <Stack.Screen name="ShoppingList" component={ShoppingListRoute} /> */}
+            <Drawer.Screen name="signup" component={Signup} />
+            <Drawer.Screen name="shoppinglist" component={ShoppingList} />
           </Drawer.Navigator>
         </NavigationContainer>
       </ThemeProvider>
