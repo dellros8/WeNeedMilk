@@ -1,16 +1,11 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { Button, Input, Text } from "react-native-elements";
+import { ThemeProvider } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
+import theme from './misc/theme.js';
 import firebase from "./firebase/firebase.js";
-import Dropdown from "./components/Dropdown/Dropdown.js";
-import Navbar from "./components/Navbar/Navbar.js";
-import Signup from "./routes/Signup/Signup.js";
-import Login from "./routes/Login/Login.js";
-import Profile from "./routes/Profile/Profile.js";
+import { Signup, Login, Profile } from './routes';
 
 const Drawer = createDrawerNavigator();
 
@@ -31,22 +26,24 @@ const App = () => {
     return null;
   } else {
     return (
-      <NavigationContainer>
-        <Drawer.Navigator initialRouteName="Signup">
-          <Drawer.Screen
-            name="Authenticate"
-            options={{
-              title: userEmail || "Login",
-            }}
-          >
-            {(props) => (userEmail ? <Profile {...props} userEmail={userEmail} /> : <Login {...props} />)}
-          </Drawer.Screen>
-          {!userEmail && <Drawer.Screen name="Signup" component={Signup} />}
-          {/* <Stack.Screen name="AddShoppingList" component={AddShoppingListRoute} />
+      <ThemeProvider theme={theme}>
+        <NavigationContainer>
+          <Drawer.Navigator initialRouteName="Signup">
+            <Drawer.Screen
+              name="Authenticate"
+              options={{
+                title: userEmail ? "Profile" : "Login",
+              }}
+            >
+              {(props) => (userEmail ? <Profile {...props} userEmail={userEmail} /> : <Login {...props} />)}
+            </Drawer.Screen>
+            {!userEmail && <Drawer.Screen name="Signup" component={Signup} />}
+            {/* <Stack.Screen name="AddShoppingList" component={AddShoppingListRoute} />
           <Stack.Screen name="CreateShoppingList" component={CreateShoppingListRoute} />
         <Stack.Screen name="ShoppingList" component={ShoppingListRoute} /> */}
-        </Drawer.Navigator>
-      </NavigationContainer>
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </ThemeProvider>
     );
   }
 };

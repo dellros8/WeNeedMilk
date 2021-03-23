@@ -1,11 +1,8 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import firebase from "../../firebase/firebase.js";
 import { Button, Input, Text, Icon } from "react-native-elements";
-import PageContainer from "../../components/PageContainer/PageContainer.js";
 
-const styles = StyleSheet.create({});
+import firebase from "../../firebase/firebase.js";
+import { PageContainer } from '../../components';
 
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState("");

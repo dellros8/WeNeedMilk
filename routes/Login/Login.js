@@ -1,10 +1,9 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import firebase from "../../firebase/firebase.js";
+import { StyleSheet } from "react-native";
 import { Button, Input, Text, Icon } from "react-native-elements";
-import Navbar from "../../components/Navbar/Navbar.js";
-import PageContainer from "../../components/PageContainer/PageContainer.js";
+
+import firebase from "../../firebase/firebase.js";
+import { PageContainer } from '../../components';
 
 const styles = StyleSheet.create({
   logInButton: {
@@ -21,16 +20,9 @@ const Login = ({ navigation }) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        navigation.navigate("Authenticate");
-      })
       .catch((error) => {
         setError(error.message);
-        let errorCode = error.code;
-        // ..
       });
-
-    // navigation.navigate('ShoppingList')
   };
 
   return (

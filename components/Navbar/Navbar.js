@@ -1,21 +1,26 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Button, Input, Text } from "react-native-elements";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { Icon } from "react-native-elements";
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
+    flex: 0.07,
     top: 40,
-    width: '100%',
-    height: 40,
-    backgroundColor: "red",
+    width: "100%",
+  },
+  navButton: {
+    flex: 1,
+    justifyContent: "center",
+    width: 80,
   },
 });
 
-const Navbar = () => {
+const Navbar = ({ openDrawer }) => {
   return (
     <View style={styles.container}>
-      <Text>asdfasdfasdfasfd</Text>
+      <TouchableOpacity style={styles.navButton} onPress={openDrawer}>
+        <Icon name="bars" type="font-awesome" size={36} />
+      </TouchableOpacity>
     </View>
   );
 };

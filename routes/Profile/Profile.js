@@ -1,31 +1,20 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import firebase from "../../firebase/firebase.js";
-import { Button, Input, Text, Icon } from "react-native-elements";
-import Navbar from "../../components/Navbar/Navbar.js";
-import PageContainer from '../../components/PageContainer/PageContainer.js';
+import { StyleSheet } from "react-native";
+import { Button } from "react-native-elements";
 
-const styles = StyleSheet.create({
-  
-});
+import firebase from "../../firebase/firebase.js";
+import { PageContainer } from '../../components';
+
+const styles = StyleSheet.create({});
 
 const Profile = ({ navigation, userEmail }) => {
+
   const [error, setError] = useState("");
 
   const signOut = () => {
     firebase
       .auth()
       .signOut()
-      .then((response) => {
-        console.log(response);
-        navigation.navigate("Authenticate");
-      })
-      .catch((error) => {
-        setError(error.message);
-        let errorCode = error.code;
-        // ..
-      });
   };
 
   return (
