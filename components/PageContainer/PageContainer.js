@@ -3,7 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-elements";
 
-import { Navbar } from '../../components';
+import Navbar from '../Navbar/Navbar.js';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -19,9 +19,9 @@ const styles = StyleSheet.create({
   },
   pageTitle: {
     textAlign: "center",
-    marginTop: 15,
+    marginTop: 5,
     marginBottom: 20,
-    fontSize: 26,
+    fontSize: 24,
     fontWeight: "bold",
   },
 });

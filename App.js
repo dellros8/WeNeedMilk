@@ -1,40 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeProvider, Text } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import theme from "./misc/theme.js";
 import firebase from "./firebase/firebase.js";
-import { Signup, Login, Profile, ShoppingList } from "./routes";
-import { DrawerContent } from './components';
+import { Signup, Login, Profile, SharedList, CreateList, AddList, QuickList } from "./routes";
+import { DrawerContent } from "./components";
 
 const Drawer = createDrawerNavigator();
 
 const App = () => {
-  const [userEmail, setUserEmail] = useState("initial");
+  const [userId, setUserId] = useState("initial");
+  const [userEmail, setUserEmail] = useState("");
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
       setUserEmail(user.email);
+      setUserId(user.uid);
     } else {
       setUserEmail("");
     }
   });
 
-  if (userEmail === "initial") {
+  if (userId === "initial") {
     return null;
   } else {
     return (
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <Drawer.Navigator initialRouteName="Signup" drawerContent={(props) => <DrawerContent userEmail={userEmail} {...props} />}>
+          <Drawer.Navigator
+            initialRouteName="quicklist"
+            drawerContent={(props) => <DrawerContent userId={userId} userEmail={userEmail} {...props} />}
+          >
             <Drawer.Screen name="authenticate">
-              {(props) => (userEmail ? <Profile {...props} userEmail={userEmail} /> : <Login {...props} />)}
+              {(props) => (userEmail ? <Profile userEmail={userEmail} {...props} /> : <Login {...props} />)}
             </Drawer.Screen>
             <Drawer.Screen name="signup" component={Signup} />
-            <Drawer.Screen name="shoppinglist" component={ShoppingList} />
+            <Drawer.Screen name="quicklist">
+              {(props) => <QuickList shoppingListTitle="Quick List" {...props} />}
+            </Drawer.Screen>
+            <Drawer.Screen name="createlist">
+              {(props) => <CreateList userId={userId} {...props} />}
+            </Drawer.Screen>
+            <Drawer.Screen name="addlist">
+              {(props) => <AddList userId={userId} {...props} />}
+            </Drawer.Screen>
+            <Drawer.Screen name="sharedlist">
+              {(props) => (
+                <SharedList
+                  shoppingListTitle={props.route.params.shoppingListTitle}
+                  sharedListCode={props.route.params.sharedListCode}
+                  {...props}
+                />
+              )}
+            </Drawer.Screen>
           </Drawer.Navigator>
         </NavigationContainer>
       </ThemeProvider>

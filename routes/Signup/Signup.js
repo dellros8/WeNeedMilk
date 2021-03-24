@@ -14,7 +14,8 @@ const Signup = ({ navigation }) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, confirmPassword)
-      .then(() => {
+      .then(({ user }) => {
+        firebase.database().ref('users/' + user.uid).set({ userId: user.uid, email: user.email })
         navigation.navigate("authenticate");
       })
       .catch((error) => {
