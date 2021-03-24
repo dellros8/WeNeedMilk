@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Button, Input, Text, Icon } from "react-native-elements";
+import { Button, Input, Text, Icon, ListItem, Divider } from "react-native-elements";
 
 import firebase from "../../firebase/firebase.js";
 import { DrawerItem } from "@react-navigation/drawer";
@@ -30,27 +30,57 @@ const DrawerContent = ({ navigation, userEmail, userId }) => {
 
   return (
     <View style={styles.container}>
-      <DrawerItem
-        label={userEmail ? "Profile" : "Log in"}
-        onPress={() => navigation.navigate("authenticate")}
-      ></DrawerItem>
-      {!userEmail && <DrawerItem label="Sign up" onPress={() => navigation.navigate("signup")}></DrawerItem>}
-      <DrawerItem label="Quick List" onPress={() => navigation.navigate("quicklist")}></DrawerItem>
-      <DrawerItem label="Create List" onPress={() => navigation.navigate("createlist")}></DrawerItem>
-      <DrawerItem label="Add List" onPress={() => navigation.navigate("addlist")}></DrawerItem>
+      <ListItem onPress={() => navigation.navigate("authenticate")}>
+        <ListItem.Content>
+          <ListItem.Title>{userEmail ? "Profile" : "Log in"}</ListItem.Title>
+        </ListItem.Content>
+        <ListItem.Chevron />
+      </ListItem>
+      {!userEmail && (
+        <ListItem onPress={() => navigation.navigate("signup")}>
+          <ListItem.Content>
+            <ListItem.Title>Sign up</ListItem.Title>
+          </ListItem.Content>
+          <ListItem.Chevron />
+        </ListItem>
+      )}
+      <Divider />
+      <ListItem onPress={() => navigation.navigate("quicklist")}>
+        <ListItem.Content>
+          <ListItem.Title>Quick List</ListItem.Title>
+        </ListItem.Content>
+        <ListItem.Chevron />
+      </ListItem>
+      <ListItem onPress={() => navigation.navigate("createlist")}>
+        <ListItem.Content>
+          <ListItem.Title>Create List</ListItem.Title>
+        </ListItem.Content>
+        <ListItem.Chevron />
+      </ListItem>
+      <ListItem onPress={() => navigation.navigate("addlist")}>
+        <ListItem.Content>
+          <ListItem.Title>Add List</ListItem.Title>
+        </ListItem.Content>
+        <ListItem.Chevron />
+      </ListItem>
+      <Divider />
       {shoppingLists.length
         ? shoppingLists.map((list) => {
             return (
-              <DrawerItem
+              <ListItem
                 key={list.code}
-                label={list.name}
                 onPress={() =>
                   navigation.navigate({
                     name: "sharedlist",
                     params: { shoppingListTitle: list.name, sharedListCode: list.code },
                   })
                 }
-              ></DrawerItem>
+              >
+                <ListItem.Content>
+                  <ListItem.Title>{list.name}</ListItem.Title>
+                </ListItem.Content>
+                <ListItem.Chevron />
+              </ListItem>
             );
           })
         : null}

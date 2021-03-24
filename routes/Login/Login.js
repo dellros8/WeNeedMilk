@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import { Button, Input, Text, Icon } from "react-native-elements";
 
 import firebase from "../../firebase/firebase.js";
-import { PageContainer } from '../../components';
+import { PageContainer } from "../../components";
 
 const styles = StyleSheet.create({
   logInButton: {
@@ -12,17 +12,20 @@ const styles = StyleSheet.create({
 });
 
 const Login = ({ navigation }) => {
+  const [loggingIn, setLoggingIn] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const login = () => {
+    setLoggingIn(true);
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .catch((error) => {
         setError(error.message);
-      });
+      })
+      .then(() => setLoggingIn(false));
   };
 
   return (
@@ -43,7 +46,7 @@ const Login = ({ navigation }) => {
         onChangeText={setPassword}
       />
       {error ? <Text style={{ color: "red" }}>{error}</Text> : null}
-      <Button style={styles.logInButton} title="Log in" onPress={() => login()} />
+      <Button loading={loggingIn} style={styles.logInButton} title="Log in" onPress={() => login()} />
     </PageContainer>
   );
 };

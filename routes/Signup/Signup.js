@@ -5,12 +5,14 @@ import firebase from "../../firebase/firebase.js";
 import { PageContainer } from '../../components';
 
 const Signup = ({ navigation }) => {
+  const [signingUp, setSigningUp] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
   const signUp = () => {
+    setSigningUp(true);
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, confirmPassword)
@@ -20,7 +22,7 @@ const Signup = ({ navigation }) => {
       })
       .catch((error) => {
         setError(error.message);
-      });
+      }).then(() => setSigningUp(false));
   };
 
   return (
@@ -50,6 +52,7 @@ const Signup = ({ navigation }) => {
       />
       {error ? <Text style={{ color: "red" }}>{error}</Text> : null}
       <Button title="Sign up" onPress={() => signUp()}></Button>
+      <Button loading={signingUp} title="Sign up" onPress={() => signUp()}></Button>
     </PageContainer>
   );
 };
