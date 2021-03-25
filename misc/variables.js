@@ -1,2 +1,2 @@
-export const MAX_LENGTH_ITEM_INPUT = 32;
+export const MAX_LENGTH_ITEM_INPUT = 36;
 export const MAX_LENGTH_SHOPPING_LIST_NAME = 24;

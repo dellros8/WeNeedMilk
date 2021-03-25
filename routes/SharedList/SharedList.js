@@ -1,36 +1,68 @@
-import React, { useEffect, useState } from "react";
-import { Button, Input, Text, Icon } from "react-native-elements";
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { Button, Input, Text, Icon, Divider } from 'react-native-elements';
+import Clipboard from 'expo-clipboard';
 
-import firebase from "../../firebase/firebase.js";
-import { MAX_LENGTH_ITEM_INPUT } from "../../misc/variables.js";
-import { PageContainer, ShoppingListItem } from "../../components";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import styles from './SharedListStyle.js';
+import { firebaseDB } from '../../firebase/firebase.js';
+import { MAX_LENGTH_ITEM_INPUT } from '../../misc/variables.js';
+import { PageContainer, ShoppingListItem } from '../../components';
+import { getWeekDay } from '../../misc/helpers.js';
 
-const SharedList = ({ route, navigation, shoppingListTitle, sharedListCode }) => {
-  const [newItem, setNewItem] = useState("");
+const SharedList = ({ navigation, shoppingListTitle, sharedListCode }) => {
+  const [newItem, setNewItem] = useState('');
   const [items, setItems] = useState([]);
+  const [doneItems, setDoneItems] = useState([]);
 
   useEffect(() => {
     if (sharedListCode) {
-      firebase
-        .database()
-        .ref(`shoppinglists/${sharedListCode}/items`)
-        .on("value", (snapshot) => {
+      firebaseDB.ref(`shoppinglists/${sharedListCode}/items`).on('value', (snapshot) => {
+        if (snapshot) {
           const newItems = [];
           snapshot.forEach((item) => {
             newItems.push({ id: item.key, ...item.val() });
           });
           setItems(newItems);
-        });
+        }
+      });
+      firebaseDB.ref(`shoppinglists/${sharedListCode}/doneitems`).on('value', (snapshot) => {
+        if (snapshot) {
+          const newDoneItems = [];
+          snapshot.forEach((item) => {
+            newDoneItems.push({ id: item.key, ...item.val() });
+          });
+          setDoneItems(newDoneItems);
+        }
+      });
     }
   }, [sharedListCode]);
 
   const addNewItem = () => {
-    firebase.database().ref(`shoppinglists/${sharedListCode}/items`).push({
+    firebaseDB.ref(`shoppinglists/${sharedListCode}/items`).push({
       name: newItem,
-      created: "2021-03-24",
+      createdWeekDay: getWeekDay(),
+      createdTime: new Date().toLocaleString(),
     });
-    setNewItem("");
+    setNewItem('');
+  };
+
+  const checkItem = (item) => {
+    firebaseDB
+      .ref(`shoppinglists/${sharedListCode}/items/${item.id}`)
+      .remove()
+      .then(() => {
+        firebaseDB.ref(`shoppinglists/${sharedListCode}/doneitems/${item.id}`).set({
+          id: item.id,
+          name: item.name,
+          createdWeekDay: item.createdWeekDay,
+          createdTime: item.createdTime,
+        });
+      });
+  };
+
+  const removeDoneItem = (item) => {
+    firebaseDB.ref(`shoppinglists/${sharedListCode}/doneitems/${item.id}`).remove();
   };
 
   return (
@@ -46,12 +78,35 @@ const SharedList = ({ route, navigation, shoppingListTitle, sharedListCode }) =>
         value={newItem}
         onChangeText={setNewItem}
         maxLength={MAX_LENGTH_ITEM_INPUT}
+        containerStyle={{ width: '90%' }}
+        onSubmitEditing={() => addNewItem()}
       />
-      {items.length
-        ? items.map((item) => {
-            return <ShoppingListItem key={item.id} itemName={item.name} created={item.created} />;
-          })
-        : null}
+      <ScrollView contentContainerStyle={{ alignItems: 'center', width: '100%' }}>
+        <View style={styles.itemsWrapper}>
+          {items.length
+            ? items.map((item) => {
+                return <ShoppingListItem key={item.id} item={item} onButtonPress={checkItem} />;
+              })
+            : null}
+        </View>
+        <View style={styles.doneItemsWrapper}>
+          {doneItems.length
+            ? doneItems.map((item) => {
+                return <ShoppingListItem doneItem key={item.id} item={item} onButtonPress={removeDoneItem} />;
+              })
+            : null}
+        </View>
+      </ScrollView>
+      <Divider style={{ width: '100%', height: 1, backgroundColor: 'black' }} />
+      <View style={styles.listCodeWrapper}>
+        <TouchableOpacity onPress={() => Clipboard.setString(sharedListCode)} style={styles.listCodeButton}>
+          <Icon name="clipboard" type="font-awesome" size={38} />
+          <Text>{sharedListCode}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => console.log('deleteList')} style={styles.deleteListButton}>
+          <Icon name="trash" type="font-awesome" size={42} color="#c70000" />
+        </TouchableOpacity>
+      </View>
     </PageContainer>
   );
 };

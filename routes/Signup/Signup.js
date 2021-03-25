@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-import { Button, Input, Text, Icon } from "react-native-elements";
+import React, { useState } from 'react';
+import { Button, Input, Text, Icon } from 'react-native-elements';
 
-import firebase from "../../firebase/firebase.js";
+import firebase from '../../firebase/firebase.js';
 import { PageContainer } from '../../components';
+import { closeKeyboard } from '../../misc/helpers.js';
 
 const Signup = ({ navigation }) => {
   const [signingUp, setSigningUp] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
 
   const signUp = () => {
     setSigningUp(true);
@@ -17,12 +18,16 @@ const Signup = ({ navigation }) => {
       .auth()
       .createUserWithEmailAndPassword(email, confirmPassword)
       .then(({ user }) => {
-        firebase.database().ref('users/' + user.uid).set({ userId: user.uid, email: user.email })
-        navigation.navigate("authenticate");
+        firebase
+          .database()
+          .ref('users/' + user.uid)
+          .set({ userId: user.uid, email: user.email });
+        navigation.navigate('authenticate');
       })
       .catch((error) => {
         setError(error.message);
-      }).then(() => setSigningUp(false));
+      })
+      .then(() => setSigningUp(false));
   };
 
   return (
@@ -50,8 +55,7 @@ const Signup = ({ navigation }) => {
         value={confirmPassword}
         onChangeText={setConfirmPassword}
       />
-      {error ? <Text style={{ color: "red" }}>{error}</Text> : null}
-      <Button title="Sign up" onPress={() => signUp()}></Button>
+      {error ? <Text style={{ color: 'red' }}>{error}</Text> : null}
       <Button loading={signingUp} title="Sign up" onPress={() => signUp()}></Button>
     </PageContainer>
   );

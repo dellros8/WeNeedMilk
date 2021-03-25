@@ -1,28 +1,31 @@
-import React, { useState } from "react";
-import { Button, Input, Text, Icon } from "react-native-elements";
+import React, { useState } from 'react';
+import { Button, Input, Text, Icon } from 'react-native-elements';
 
-import firebase from "../../firebase/firebase.js";
-import { PageContainer } from "../../components";
-import { guidGenerator } from "../../misc/helpers.js";
+import { firebaseDB } from '../../firebase/firebase.js';
+import { PageContainer } from '../../components';
+import { guidGenerator } from '../../misc/helpers.js';
 
 const AddList = ({ navigation, userId }) => {
-  const [shoppingListCode, setShoppingListCode] = useState("");
+  const [shoppingListCode, setShoppingListCode] = useState('');
 
   const addShoppingList = () => {
-    firebase
-      .database()
+    firebaseDB
       .ref(`shoppinglists/${shoppingListCode}`)
-      .once("value")
+      .once('value')
       .then((shoppingList) => {
-        const shoppingListCode = shoppingList.child("code").val();
-        const shoppingListName = shoppingList.child("name").val();
+        const sharedListCode = shoppingList.child('code').val();
+        const shoppingListTitle = shoppingList.child('name').val();
 
-        firebase.database().ref(`users/${userId}/myshoppinglists/${shoppingListCode}`).set({
-          code: shoppingListCode,
-          name: shoppingListName,
+        firebaseDB.ref(`users/${userId}/myshoppinglists/${sharedListCode}`).set({
+          code: sharedListCode,
+          name: shoppingListTitle,
+        });
+        setShoppingListCode('');
+        navigation.navigate({
+          name: 'sharedlist',
+          params: { shoppingListTitle, sharedListCode },
         });
       });
-    setShoppingListCode("");
   };
 
   return (

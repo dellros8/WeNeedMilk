@@ -1,41 +1,45 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-elements";
+import React from 'react';
+import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View } from 'react-native';
+import { Text } from 'react-native-elements';
 
 import Navbar from '../Navbar/Navbar.js';
 
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
   },
   container: {
-    width: "80%",
+    width: '100%',
     marginTop: 40,
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   pageTitle: {
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: 5,
     marginBottom: 20,
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });
 
 const PageContainer = ({ openDrawer, title, children }) => {
   return (
-    <View style={styles.wrapper}>
-      <StatusBar />
-      <Navbar openDrawer={openDrawer} />
-      <View style={styles.container}>
-        <Text style={styles.pageTitle}>{title}</Text>
-        {children}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={styles.wrapper}>
+        <StatusBar />
+        <Navbar openDrawer={openDrawer} />
+        <View style={styles.container}>
+          <Text style={styles.pageTitle}>{title}</Text>
+          {children}
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

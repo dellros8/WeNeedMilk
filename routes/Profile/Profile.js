@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
 import { Button, Icon } from "react-native-elements";
 
 import firebase from "../../firebase/firebase.js";
