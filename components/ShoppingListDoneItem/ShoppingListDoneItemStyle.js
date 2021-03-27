@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { LIGHT_GREEN } from '../../misc/variables';
+import { DARK_RED } from '../../misc/variables';
 
 const styles = StyleSheet.create({
   shoppingListItemWrapper: {
@@ -12,16 +12,19 @@ const styles = StyleSheet.create({
     borderColor: '#ededed',
     borderWidth: 1,
     borderRadius: 4,
+    opacity: 0.8,
   },
   itemName: {
     flex: 1,
     marginLeft: 5,
     marginRight: 5,
+    textDecorationLine: 'line-through',
+    textDecorationStyle: 'double',
   },
-  checkButton: {
-    backgroundColor: LIGHT_GREEN,
-    paddingLeft: 8,
-    paddingRight: 8,
+  removeButton: {
+    backgroundColor: DARK_RED,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 });
 

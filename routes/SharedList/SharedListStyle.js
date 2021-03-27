@@ -8,16 +8,15 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingTop: 10,
     paddingRight: 30,
-    paddingBottom: 20,
     paddingLeft: 30,
   },
   itemsWrapper: {
     alignItems: 'center',
-    width: '80%',
+    width: '100%',
   },
   doneItemsWrapper: {
     alignItems: 'center',
-    width: '80%',
+    width: '100%',
   },
   listCodeButton: {
     alignItems: 'center',

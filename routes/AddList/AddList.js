@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Input, Text, Icon } from 'react-native-elements';
+import { Button, Input } from 'react-native-elements';
 
 import { firebaseDB } from '../../firebase/firebase.js';
 import { PageContainer } from '../../components';
-import { guidGenerator } from '../../misc/helpers.js';
+import { APP_PRIMARY_COLOR } from '../../misc/variables.js';
+import commonStyles from '../../styles/CommonStyles.js';
 
 const AddList = ({ navigation, userId }) => {
   const [shoppingListCode, setShoppingListCode] = useState('');
@@ -31,13 +32,16 @@ const AddList = ({ navigation, userId }) => {
   return (
     <PageContainer openDrawer={navigation.openDrawer} title="Add Shopping List">
       <Input
-        leftIcon={<Icon name="qrcode" type="font-awesome" size={24} />}
-        placeholder={`e.g. ${guidGenerator()}`}
-        label="Code"
+        placeholder="Code"
         value={shoppingListCode}
         onChangeText={setShoppingListCode}
+        containerStyle={commonStyles.defaultPageInputContainer}
       />
-      <Button title="Add List" onPress={() => addShoppingList()}></Button>
+      <Button
+        title="Add List"
+        onPress={() => addShoppingList()}
+        containerStyle={commonStyles.defaultPageButtonContainer}
+        buttonStyle={commonStyles.defaultPageButton}></Button>
     </PageContainer>
   );
 };

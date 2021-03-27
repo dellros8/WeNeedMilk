@@ -1,4 +1,5 @@
 import { Keyboard } from 'react-native';
+import Clipboard from 'expo-clipboard';
 
 export const guidGenerator = () => {
   var S4 = function () {
@@ -30,6 +31,8 @@ export const getWeekDay = () => {
   }
 };
 
-export const closeKeyboard = () => {
-  Keyboard.dismiss
-}
+export const copyToClipboard = async (string, setCopiedStringTimeCallback) => {
+  Clipboard.setString(string);
+  const text = await Clipboard.getStringAsync();
+  setCopiedStringTimeCallback(text);
+};

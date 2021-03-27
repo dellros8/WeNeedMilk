@@ -3,7 +3,8 @@ import { Button, Input, Text, Icon } from 'react-native-elements';
 
 import firebase from '../../firebase/firebase.js';
 import { PageContainer } from '../../components';
-import { closeKeyboard } from '../../misc/helpers.js';
+import { APP_PRIMARY_COLOR } from '../../misc/variables.js';
+import commonStyles from '../../styles/CommonStyles.js';
 
 const Signup = ({ navigation }) => {
   const [signingUp, setSigningUp] = useState(false);
@@ -33,30 +34,42 @@ const Signup = ({ navigation }) => {
   return (
     <PageContainer openDrawer={navigation.openDrawer} title="Sign up">
       <Input
-        leftIcon={<Icon name="envelope" type="font-awesome" size={18} color="black" iconStyle={{ marginRight: 8 }} />}
+        leftIcon={<Icon name="envelope" type="font-awesome" size={18} color="black" iconStyle={commonStyles.inputLeftIcon} />}
         placeholder="Email Address"
         label="Email Address"
         value={email}
         onChangeText={setEmail}
+        containerStyle={commonStyles.defaultPageInputContainer}
       />
       <Input
-        leftIcon={<Icon name="lock" type="font-awesome" size={24} color="black" iconStyle={{ marginRight: 8 }} />}
+        leftIcon={
+          <Icon name="lock" type="font-awesome" size={24} color="black" iconStyle={commonStyles.inputLeftIcon} />
+        }
         placeholder="Password"
         secureTextEntry={true}
         label="Password"
         value={password}
         onChangeText={setPassword}
+        containerStyle={commonStyles.defaultPageInputContainer}
       />
       <Input
-        leftIcon={<Icon name="lock" type="font-awesome" size={24} color="black" iconStyle={{ marginRight: 8 }} />}
+        leftIcon={
+          <Icon name="lock" type="font-awesome" size={24} color="black" iconStyle={commonStyles.inputLeftIcon} />
+        }
         placeholder="Confirm Password"
         secureTextEntry={true}
         label="Confirm Password"
         value={confirmPassword}
         onChangeText={setConfirmPassword}
+        containerStyle={commonStyles.defaultPageInputContainer}
       />
-      {error ? <Text style={{ color: 'red' }}>{error}</Text> : null}
-      <Button loading={signingUp} title="Sign up" onPress={() => signUp()}></Button>
+      {error ? <Text style={commonStyles.formErrorText}>{error}</Text> : null}
+      <Button
+        containerStyle={commonStyles.defaultPageButtonContainer}
+        buttonStyle={commonStyles.defaultPageButton}
+        loading={signingUp}
+        title="Sign up"
+        onPress={() => signUp()}></Button>
     </PageContainer>
   );
 };

@@ -32,7 +32,7 @@ const App = () => {
         <NavigationContainer>
           <Drawer.Navigator
             initialRouteName="quicklist"
-            drawerContent={(props) => <DrawerContent userId={userId} userEmail={userEmail} {...props} />}>
+            drawerContent={(props) => <DrawerContent userId={userId} {...props} />}>
             <Drawer.Screen name="authenticate">
               {(props) => (userEmail ? <Profile userEmail={userEmail} {...props} /> : <Login {...props} />)}
             </Drawer.Screen>

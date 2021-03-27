@@ -5,7 +5,6 @@ import { Icon } from "react-native-elements";
 const styles = StyleSheet.create({
   container: {
     flex: 0.07,
-    top: 40,
     width: "100%",
   },
   navButton: {

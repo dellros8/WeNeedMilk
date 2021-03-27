@@ -2,19 +2,19 @@ import React from 'react';
 import { View } from 'react-native';
 import { Button, Text, Icon } from 'react-native-elements';
 
-import styles from './ShoppingListItemStyle.js';
+import styles from './ShoppingListDoneItemStyle.js';
 
-const ShoppingListItem = ({ onButtonPress, item }) => {
+const ShoppingListDoneItem = ({ onButtonPress, item }) => {
   return (
     <View style={styles.shoppingListItemWrapper}>
       <Text style={styles.itemName}>{item.name}</Text>
       <Button
         onPress={() => onButtonPress(item)}
-        icon={<Icon name="check" type="font-awesome" color="#ffffff" size={20} />}
-        buttonStyle={styles.checkButton}
+        icon={<Icon name="remove" type="font-awesome" size={20} color="white" />}
+        buttonStyle={styles.removeButton}
       />
     </View>
   );
 };
 
-export default ShoppingListItem;
+export default ShoppingListDoneItem;

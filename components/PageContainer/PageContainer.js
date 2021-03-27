@@ -1,10 +1,11 @@
 import React from 'react';
-import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-elements';
 
 import Navbar from '../Navbar/Navbar.js';
+import { APP_PRIMARY_COLOR } from '../../misc/variables.js';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -14,12 +15,12 @@ const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-    marginTop: 40,
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
   },
   pageTitle: {
+    color: APP_PRIMARY_COLOR,
     textAlign: 'center',
     marginTop: 5,
     marginBottom: 20,
@@ -31,14 +32,14 @@ const styles = StyleSheet.create({
 const PageContainer = ({ openDrawer, title, children }) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={styles.wrapper}>
+      <SafeAreaView style={styles.wrapper}>
         <StatusBar />
         <Navbar openDrawer={openDrawer} />
         <View style={styles.container}>
           <Text style={styles.pageTitle}>{title}</Text>
           {children}
         </View>
-      </View>
+      </SafeAreaView>
     </TouchableWithoutFeedback>
   );
 };
