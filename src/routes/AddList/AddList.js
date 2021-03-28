@@ -25,7 +25,7 @@ const AddList = ({ navigation, userId }) => {
   };
 
   return (
-    <PageContainer openDrawer={navigation.openDrawer} title="Add Shopping List">
+    <PageContainer openDrawer={navigation.openDrawer} title="Add List">
       <Input
         placeholder="Code"
         value={shoppingListCode}

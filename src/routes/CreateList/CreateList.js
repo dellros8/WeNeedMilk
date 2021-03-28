@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Input, Text, Icon } from 'react-native-elements';
+import { Button, Input } from 'react-native-elements';
 
 import { setList, setListToUser } from '../../firebase/functions.js';
-import { firebaseDB } from '../../firebase/config.js';
-import { APP_PRIMARY_COLOR, MAX_LENGTH_SHOPPING_LIST_NAME } from '../../misc/variables.js';
+import { MAX_LENGTH_SHOPPING_LIST_NAME } from '../../misc/variables.js';
 import { PageContainer } from '../../components';
 import { guidGenerator } from '../../misc/helpers.js';
 import commonStyles from '../../styles/CommonStyles.js';
@@ -30,7 +29,7 @@ const CreateList = ({ navigation, userId }) => {
   };
 
   return (
-    <PageContainer openDrawer={navigation.openDrawer} title="Create Shopping List">
+    <PageContainer openDrawer={navigation.openDrawer} title="Create List">
       <Input
         placeholder="Name"
         value={shoppingListName}
