@@ -15,20 +15,20 @@ const CopyCodeOverlay = ({ isVisible, closeOverlay, sharedListCode }) => {
   };
 
   return (
-    <Overlay isVisible={isVisible} onBackdropPress={() => onClose()}>
+    <Overlay isVisible={isVisible} onBackdropPress={() => onClose()} overlayStyle={commonStyles.overlay}>
       <View style={commonStyles.overlayChildContainer}>
         <Text style={commonStyles.overlayTitle}>Copy Code</Text>
-        <TouchableOpacity
-          style={commonStyles.overlayDescription}
-          onPress={() => copyToClipboard(sharedListCode, setCopiedString)}>
-          <Icon name="clipboard" type="font-awesome" color={APP_PRIMARY_COLOR} size={80} />
-        </TouchableOpacity>
-        {copiedString ? (
-          <Text>
-            Code <Text style={{ fontWeight: 'bold', color: APP_PRIMARY_COLOR }}>{copiedString}</Text> Successfully
-            Copied!
-          </Text>
-        ) : null}
+        <View style={commonStyles.overlayDescription}>
+          <TouchableOpacity onPress={() => copyToClipboard(sharedListCode, setCopiedString)}>
+            <Icon name="clipboard" type="font-awesome" color={APP_PRIMARY_COLOR} size={80} />
+          </TouchableOpacity>
+          {copiedString ? (
+            <Text>
+              Code <Text style={{ fontWeight: 'bold', color: APP_PRIMARY_COLOR }}>{copiedString}</Text> Successfully
+              Copied!
+            </Text>
+          ) : null}
+        </View>
         <Button
           onPress={() => onClose()}
           title="Close"

@@ -17,7 +17,7 @@ const RemoveListOverlay = ({ isVisible, closeOverlay, sharedListCode, userId, na
       });
   };
   return (
-    <Overlay isVisible={isVisible} onBackdropPress={closeOverlay}>
+    <Overlay isVisible={isVisible} onBackdropPress={closeOverlay} overlayStyle={commonStyles.overlay}>
       <View style={commonStyles.overlayChildContainer}>
         <Text style={commonStyles.overlayTitle}>Remove List</Text>
         <Text style={commonStyles.overlayDescription}>

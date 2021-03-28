@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { APP_PRIMARY_COLOR, GREY, LIGHT_RED, VERY_LIGHT_GREY } from '../misc/variables';
+import { APP_PRIMARY_COLOR, GREY, LIGHT_RED } from '../misc/variables';
 
 const styles = StyleSheet.create({
   overlayChildContainer: {
@@ -65,13 +65,16 @@ const styles = StyleSheet.create({
     backgroundColor: GREY,
   },
   shoppingListItemWrapper: {
+    borderRadius: 5,
     padding: 3,
     marginBottom: 10,
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: VERY_LIGHT_GREY,
+  },
+  overlay: {
+    borderRadius: 8,
   },
 });
 
