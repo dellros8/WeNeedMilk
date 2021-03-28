@@ -18,6 +18,7 @@ const SharedList = ({ navigation, shoppingListTitle, sharedListCode, userId }) =
   const [copyCodeOverlayVisible, setCopyCodeOverlayVisible] = useState(false);
 
   useEffect(() => {
+    setItems([]);
     listItemsRef(sharedListCode).on('value', setItemsFromDB);
     return () => {
       listItemsRef(sharedListCode).off('value', setItemsFromDB);
@@ -70,7 +71,7 @@ const SharedList = ({ navigation, shoppingListTitle, sharedListCode, userId }) =
           sharedListCode={sharedListCode}
         />
         <TouchableOpacity onPress={() => setRemoveListOverlayVisible(true)} style={styles.removeListButton}>
-          <Icon name="trash" type="font-awesome" size={42} color={DARK_RED} />
+          <Icon name="trash" type="font-awesome" size={42} />
         </TouchableOpacity>
         <RemoveListOverlay
           isVisible={removeListOverlayVisible}
