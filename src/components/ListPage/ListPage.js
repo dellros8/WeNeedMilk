@@ -5,7 +5,7 @@ import { Input, Icon } from 'react-native-elements';
 import ShoppingListDoneItem from '../ShoppingListDoneItem/ShoppingListDoneItem.js';
 import ShoppingListItem from '../ShoppingListItem/ShoppingListItem.js';
 import commonStyles from '../../styles/CommonStyles.js';
-import { MAX_LENGTH_ITEM_INPUT } from '../../misc/variables.js';
+import { APP_PRIMARY_COLOR, MAX_LENGTH_ITEM_INPUT } from '../../misc/variables.js';
 
 const ListPage = ({ items, addNewItem, checkItem, removeDoneItem }) => {
   const [newItem, setNewItem] = useState('');
@@ -21,7 +21,7 @@ const ListPage = ({ items, addNewItem, checkItem, removeDoneItem }) => {
       <Input
         rightIcon={
           <TouchableOpacity onPress={onAddItem}>
-            <Icon name="tag" type="font-awesome" size={40} />
+            <Icon name="tag" type="font-awesome" size={36} color={APP_PRIMARY_COLOR} />
           </TouchableOpacity>
         }
         placeholder="Milk... or something else"
