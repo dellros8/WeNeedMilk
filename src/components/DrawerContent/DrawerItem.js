@@ -18,7 +18,7 @@ const DrawerItem = ({ navigation, to, disabled, disabledStyle, iconName, iconSiz
     return () => {
       setActiveStyle({});
     };
-  }, [navigationState.routes[activeRouteIndex]]);
+  }, [navigation.dangerouslyGetState().routes[navigation.dangerouslyGetState().index]]);
 
   const setRouteActiveStyle = (activeRouteName) => {
     if (activeRouteName === 'sharedlist' && to.params) {

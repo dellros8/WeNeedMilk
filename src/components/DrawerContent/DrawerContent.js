@@ -36,7 +36,7 @@ const DrawerContent = ({ navigation, userId }) => {
         iconName={userId ? 'user' : 'sign-in'}
         text={userId ? 'Profile' : 'Login'}
       />
-      {!userId && <DrawerItem to="signup" iconName="user-plus" iconSize={18} text="Sign up" />}
+      {!userId && <DrawerItem navigation={navigation} to="signup" iconName="user-plus" iconSize={18} text="Sign up" />}
       <DrawerItem navigation={navigation} to="personallist" iconName="file-text-o" text="Personal List" />
       <Divider style={commonStyles.divider} />
       <Text style={styles.drawerTitleText}>Shared Lists</Text>
