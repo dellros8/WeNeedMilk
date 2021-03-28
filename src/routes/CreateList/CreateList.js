@@ -11,22 +11,22 @@ import commonStyles from '../../styles/CommonStyles.js';
 const CreateList = ({ navigation, userId }) => {
   const [shoppingListName, setShoppingListName] = useState('');
 
-  const createShoppingList = () => {
+  const createShoppingList = (listName) => {
+    setShoppingListName('');
     const listCode = guidGenerator();
     const listObj = {
       code: listCode,
-      name: shoppingListName,
+      name: listName,
       createdBy: userId,
     };
     setList(listCode, listObj).then(() => {
-      setListToUser(listCode, shoppingListName, userId).then(() => {
+      setListToUser(listCode, listName, userId).then(() => {
         navigation.navigate({
           name: 'sharedlist',
-          params: { shoppingListTitle: shoppingListName, sharedListCode: listCode, userId },
+          params: { shoppingListTitle: listName, sharedListCode: listCode, userId },
         });
       });
     });
-    setShoppingListName('');
   };
 
   return (
@@ -40,7 +40,7 @@ const CreateList = ({ navigation, userId }) => {
       />
       <Button
         title="Create List"
-        onPress={() => createShoppingList()}
+        onPress={() => createShoppingList(shoppingListName)}
         containerStyle={commonStyles.defaultPageButtonContainer}
         buttonStyle={commonStyles.defaultPageButton}></Button>
     </PageContainer>

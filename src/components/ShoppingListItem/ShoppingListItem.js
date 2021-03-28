@@ -2,11 +2,12 @@ import React from 'react';
 import { View } from 'react-native';
 import { Button, Text, Icon } from 'react-native-elements';
 
+import commonStyles from '../../styles/CommonStyles.js';
 import styles from './ShoppingListItemStyle.js';
 
 const ShoppingListItem = ({ checkItem, item }) => {
   return (
-    <View style={styles.shoppingListItemWrapper}>
+    <View style={commonStyles.shoppingListItemWrapper}>
       <Text style={styles.itemName}>{item.name}</Text>
       <Button
         onPress={() => checkItem(item)}

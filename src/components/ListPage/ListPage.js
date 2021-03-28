@@ -10,15 +10,17 @@ import { MAX_LENGTH_ITEM_INPUT } from '../../misc/variables.js';
 const ListPage = ({ items, addNewItem, checkItem, removeDoneItem }) => {
   const [newItem, setNewItem] = useState('');
 
+  const onAddItem = () => {
+    if (newItem !== '') {
+      addNewItem(newItem);
+      setNewItem('');
+    }
+  };
   return (
     <>
       <Input
         rightIcon={
-          <TouchableOpacity
-            onPress={() => {
-              addNewItem(newItem);
-              setNewItem('');
-            }}>
+          <TouchableOpacity onPress={onAddItem}>
             <Icon name="tag" type="font-awesome" size={40} />
           </TouchableOpacity>
         }
@@ -27,10 +29,7 @@ const ListPage = ({ items, addNewItem, checkItem, removeDoneItem }) => {
         onChangeText={setNewItem}
         maxLength={MAX_LENGTH_ITEM_INPUT}
         containerStyle={commonStyles.defaultPageInputContainer}
-        onSubmitEditing={() => {
-          addNewItem(newItem);
-          setNewItem('');
-        }}
+        onSubmitEditing={onAddItem}
       />
       <ScrollView style={commonStyles.defaultPageWidth}>
         <View style={commonStyles.scrollViewChildContainer} onStartShouldSetResponder={() => true}>

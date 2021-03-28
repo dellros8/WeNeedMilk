@@ -5,7 +5,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import theme from './src/misc/theme.js';
 import { firebaseAuth } from './src/firebase/config.js';
-import { Signup, Login, Profile, SharedList, CreateList, AddList, QuickList } from './src/routes';
+import { Signup, Login, Profile, SharedList, CreateList, AddList, PersonalList } from './src/routes';
 import { DrawerContent } from './src/components';
 
 const Drawer = createDrawerNavigator();
@@ -31,13 +31,13 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <NavigationContainer>
           <Drawer.Navigator
-            initialRouteName="quicklist"
+            initialRouteName="personallist"
             drawerContent={(props) => <DrawerContent userId={userId} {...props} />}>
             <Drawer.Screen name="authenticate">
               {(props) => (userEmail ? <Profile userEmail={userEmail} {...props} /> : <Login {...props} />)}
             </Drawer.Screen>
             <Drawer.Screen name="signup" component={Signup} />
-            <Drawer.Screen name="quicklist">{(props) => <QuickList {...props} />}</Drawer.Screen>
+            <Drawer.Screen name="personallist">{(props) => <PersonalList {...props} />}</Drawer.Screen>
             <Drawer.Screen name="createlist">{(props) => <CreateList userId={userId} {...props} />}</Drawer.Screen>
             <Drawer.Screen name="addlist">{(props) => <AddList userId={userId} {...props} />}</Drawer.Screen>
             <Drawer.Screen name="sharedlist">

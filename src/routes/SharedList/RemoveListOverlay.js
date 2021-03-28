@@ -6,13 +6,13 @@ import { firebaseDB } from '../../firebase/config.js';
 import { DARK_RED } from '../../misc/variables.js';
 import commonStyles from '../../styles/CommonStyles.js';
 
-const RemoveListOverlay = ({ isVisible, closeOverlay, sharedListCode, userId, navigateToQuickList }) => {
+const RemoveListOverlay = ({ isVisible, closeOverlay, sharedListCode, userId, navigateToPersonalList }) => {
   const removeList = () => {
     firebaseDB
       .ref(`users/${userId}/myshoppinglists/${sharedListCode}`)
       .remove()
       .then(() => {
-        navigateToQuickList();
+        navigateToPersonalList();
         closeOverlay();
       });
   };

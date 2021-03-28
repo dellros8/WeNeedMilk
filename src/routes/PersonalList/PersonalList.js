@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PageContainer, ListPage } from '../../components';
 import { guidGenerator, sortFullItemList } from '../../misc/helpers.js';
 
-const QuickList = ({ navigation }) => {
+const PersonalList = ({ navigation }) => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -54,10 +54,10 @@ const QuickList = ({ navigation }) => {
   };
 
   return (
-    <PageContainer openDrawer={navigation.openDrawer} title="Quick Shopping List">
+    <PageContainer openDrawer={navigation.openDrawer} title="Personal Shopping List">
       <ListPage items={items} addNewItem={addNewItem} checkItem={checkItem} removeDoneItem={removeDoneItem} />
     </PageContainer>
   );
 };
 
-export default QuickList;
+export default PersonalList;

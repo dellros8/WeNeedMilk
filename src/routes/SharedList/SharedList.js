@@ -77,7 +77,7 @@ const SharedList = ({ navigation, shoppingListTitle, sharedListCode, userId }) =
           closeOverlay={() => setRemoveListOverlayVisible(false)}
           sharedListCode={sharedListCode}
           userId={userId}
-          navigateToQuickList={() => navigation.navigate('quicklist')}
+          navigateToPersonalList={() => navigation.navigate('personallist')}
         />
       </View>
     </PageContainer>
