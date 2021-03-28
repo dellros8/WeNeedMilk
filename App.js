@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { ThemeProvider, Text } from 'react-native-elements';
+import React, { useState } from 'react';
+import { ThemeProvider } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import theme from './misc/theme.js';
-import { firebaseAuth } from './firebase/firebase.js';
-import { Signup, Login, Profile, SharedList, CreateList, AddList, QuickList } from './routes';
-import { DrawerContent } from './components';
+import theme from './src/misc/theme.js';
+import { firebaseAuth } from './src/firebase/config.js';
+import { Signup, Login, Profile, SharedList, CreateList, AddList, QuickList } from './src/routes';
+import { DrawerContent } from './src/components';
 
 const Drawer = createDrawerNavigator();
 
@@ -45,6 +45,7 @@ const App = () => {
                 <SharedList
                   shoppingListTitle={props.route.params.shoppingListTitle}
                   sharedListCode={props.route.params.sharedListCode}
+                  userId={props.route.params.userId}
                   {...props}
                 />
               )}
