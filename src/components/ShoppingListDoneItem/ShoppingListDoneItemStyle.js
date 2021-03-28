@@ -4,6 +4,7 @@ import { DARK_RED } from '../../misc/variables';
 const styles = StyleSheet.create({
   itemName: {
     flex: 1,
+    fontSize: 18,
     marginLeft: 5,
     marginRight: 5,
     textDecorationLine: 'line-through',
