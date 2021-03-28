@@ -3,7 +3,8 @@ export const MAX_LENGTH_ITEM_INPUT = 36;
 export const MAX_LENGTH_SHOPPING_LIST_NAME = 24;
 
 // colors
-export const APP_PRIMARY_COLOR = '#D87517';
+export const APP_PRIMARY_COLOR = '#17A3D8';
+export const APP_PRIMARY_COLOR_LIGHT = '#E3F7FF';
 
 export const LIGHT_RED = '#FF0000';
 export const DARK_RED = '#D94242';
