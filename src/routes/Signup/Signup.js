@@ -13,27 +13,33 @@ const Signup = ({ navigation }) => {
   const [error, setError] = useState('');
 
   const signUp = () => {
-    setSigningUp(true);
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, confirmPassword)
-      .then(({ user }) => {
-        firebase
-          .database()
-          .ref('users/' + user.uid)
-          .set({ userId: user.uid, email: user.email });
-        navigation.navigate('authenticate');
-      })
-      .catch((error) => {
-        setError(error.message);
-      })
-      .then(() => setSigningUp(false));
+    if (password === confirmPassword) {
+      setSigningUp(true);
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, confirmPassword)
+        .then(({ user }) => {
+          firebase
+            .database()
+            .ref('users/' + user.uid)
+            .set({ userId: user.uid, email: user.email });
+          navigation.navigate('authenticate');
+        })
+        .catch((error) => {
+          setError(error.message);
+        })
+        .then(() => setSigningUp(false));
+    } else {
+      setError('Lösenorden stämmer inte överens');
+    }
   };
 
   return (
     <PageContainer openDrawer={navigation.openDrawer} title="Skapa konto">
       <Input
-        leftIcon={<Icon name="envelope" type="font-awesome" size={18} color="black" iconStyle={commonStyles.inputLeftIcon} />}
+        leftIcon={
+          <Icon name="envelope" type="font-awesome" size={18} color="black" iconStyle={commonStyles.inputLeftIcon} />
+        }
         placeholder="E-post"
         label="E-post"
         value={email}
