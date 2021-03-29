@@ -1,5 +1,9 @@
 import { firebaseDB, firebaseAuth } from './config.js';
 
+export const signOut = () => {
+  return firebaseAuth.signOut();
+};
+
 export const getList = (listCode) => {
   return firebaseDB.ref(`shoppinglists/${listCode}`).once('value');
 };

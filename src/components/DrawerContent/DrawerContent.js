@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { Icon, ListItem, Divider, Text } from 'react-native-elements';
 
 import { myListsRef } from '../../firebase/functions.js';
+import { InformationText } from '../../components';
 import { APP_PRIMARY_COLOR, DARK_GREY, GREY, LIGHT_GREY } from '../../misc/variables.js';
 import DrawerItem from './DrawerItem.js';
 import styles from './DrawerContentStyle.js';
@@ -59,13 +60,7 @@ const DrawerContent = ({ navigation, userId }) => {
         text="Lägg till lista"
       />
       <Divider style={commonStyles.divider} />
-      {!userId && (
-        <View style={{ padding: 20, fontSize: 16 }}>
-          <Text style={{ fontSize: 16, fontStyle: 'italic', color: DARK_GREY }}>
-            Du måste logga in för att kunna skapa och dela listor
-          </Text>
-        </View>
-      )}
+      {!userId && <InformationText>Du måste logga in för att kunna skapa och dela listor</InformationText>}
       {shoppingLists.length
         ? shoppingLists.map((list) => {
             return (

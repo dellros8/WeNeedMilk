@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
+import { View, Text } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 
-import firebase from '../../firebase/config.js';
-import { PageContainer } from '../../components';
+import { signOut } from '../../firebase/functions.js';
+import { PageContainer, InformationText } from '../../components';
 import commonStyles from '../../styles/CommonStyles.js';
+import { DARK_GREY } from '../../misc/variables.js';
 
 const Profile = ({ navigation, userEmail }) => {
   const [signingOut, setSigningOut] = useState(false);
 
-  const signOut = () => {
+  const onSignOut = () => {
     setSigningOut(true);
-    firebase
-      .auth()
-      .signOut()
-      .then(() => setSigningOut(false));
+    signOut().then(() => setSigningOut(false));
   };
 
   return (
     <PageContainer openDrawer={navigation.openDrawer} title={userEmail}>
+      <InformationText>
+        Här finns inte så mycket ännu. Letar du efter något? Skicka gärna förslag till dellros.simon@gmail.com
+      </InformationText>
       <Button
         loading={signingOut}
         icon={<Icon name="sign-out" type="font-awesome" size={26} style={{ marginRight: 5 }} />}
         title="Logga ut"
-        onPress={() => signOut()}
+        onPress={() => onSignOut()}
         containerStyle={commonStyles.defaultPageButtonContainer}
         buttonStyle={commonStyles.defaultPageButton}></Button>
     </PageContainer>
