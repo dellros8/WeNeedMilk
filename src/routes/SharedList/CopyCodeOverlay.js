@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { Button, Text, Icon, Overlay } from 'react-native-elements';
 
-import { APP_PRIMARY_COLOR } from '../../misc/variables.js';
+import { APP_PRIMARY_COLOR, GREY, LIGHT_GREY } from '../../misc/variables.js';
 import commonStyles from '../../styles/CommonStyles.js';
 import { copyToClipboard } from '../../misc/helpers.js';
+import styles from './SharedListStyle.js';
 
 const CopyCodeOverlay = ({ isVisible, closeOverlay, sharedListCode }) => {
   const [copiedString, setCopiedString] = useState('');
@@ -17,21 +18,17 @@ const CopyCodeOverlay = ({ isVisible, closeOverlay, sharedListCode }) => {
   return (
     <Overlay isVisible={isVisible} onBackdropPress={() => onClose()} overlayStyle={commonStyles.overlay}>
       <View style={commonStyles.overlayChildContainer}>
-        <Text style={commonStyles.overlayTitle}>Copy Code</Text>
-        <View style={commonStyles.overlayDescription}>
-          <TouchableOpacity onPress={() => copyToClipboard(sharedListCode, setCopiedString)}>
-            <Icon name="clipboard" type="font-awesome" color={APP_PRIMARY_COLOR} size={80} />
-          </TouchableOpacity>
-          {copiedString ? (
-            <Text>
-              Code <Text style={{ fontWeight: 'bold', color: APP_PRIMARY_COLOR }}>{copiedString}</Text> Successfully
-              Copied!
-            </Text>
-          ) : null}
-        </View>
+        <Text style={commonStyles.overlayTitle}>Kopiera kod</Text>
+        <TouchableOpacity
+          style={styles.copyCodeDescriptionContainer}
+          onPress={() => copyToClipboard(sharedListCode, setCopiedString)}>
+          <Text style={{ fontWeight: 'bold', fontSize: 20, padding: 10 }}>{sharedListCode}</Text>
+          <Icon name="clipboard" type="font-awesome" size={60} />
+        </TouchableOpacity>
+        {copiedString ? <Text style={{ marginTop: 10 }}>Koden har kopierats</Text> : null}
         <Button
           onPress={() => onClose()}
-          title="Close"
+          title="Stäng"
           buttonStyle={commonStyles.overlayPrimaryButton}
           containerStyle={commonStyles.overlayPrimaryButtonContainer}></Button>
       </View>

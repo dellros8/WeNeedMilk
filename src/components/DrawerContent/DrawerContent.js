@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Icon, ListItem, Divider, Text } from 'react-native-elements';
 
 import { myListsRef } from '../../firebase/functions.js';
-import { APP_PRIMARY_COLOR, GREY, LIGHT_GREY } from '../../misc/variables.js';
+import { APP_PRIMARY_COLOR, DARK_GREY, GREY, LIGHT_GREY } from '../../misc/variables.js';
 import DrawerItem from './DrawerItem.js';
 import styles from './DrawerContentStyle.js';
 import commonStyles from '../../styles/CommonStyles.js';
@@ -34,19 +34,21 @@ const DrawerContent = ({ navigation, userId }) => {
         navigation={navigation}
         to="authenticate"
         iconName={userId ? 'user' : 'sign-in'}
-        text={userId ? 'Profile' : 'Login'}
+        text={userId ? 'Mitt konto' : 'Logga in'}
       />
-      {!userId && <DrawerItem navigation={navigation} to="signup" iconName="user-plus" iconSize={18} text="Sign up" />}
-      <DrawerItem navigation={navigation} to="personallist" iconName="file-text-o" text="Personal List" />
+      {!userId && (
+        <DrawerItem navigation={navigation} to="signup" iconName="user-plus" iconSize={18} text="Skapa konto" />
+      )}
+      <DrawerItem navigation={navigation} to="personallist" iconName="file-text-o" text="Personlig lista" />
       <Divider style={commonStyles.divider} />
-      <Text style={styles.drawerTitleText}>Shared Lists</Text>
+      <Text style={styles.drawerTitleText}>Delade listor</Text>
       <DrawerItem
         navigation={navigation}
         to="createlist"
         disabled={userId ? false : true}
         disabledStyle={styles.drawerItemDisabled}
         iconName="plus"
-        text="Create List"
+        text="Skapa ny lista"
       />
       <DrawerItem
         navigation={navigation}
@@ -54,9 +56,16 @@ const DrawerContent = ({ navigation, userId }) => {
         disabled={userId ? false : true}
         disabledStyle={styles.drawerItemDisabled}
         iconName="qrcode"
-        text="Add List"
+        text="Lägg till lista"
       />
       <Divider style={commonStyles.divider} />
+      {!userId && (
+        <View style={{ padding: 20, fontSize: 16 }}>
+          <Text style={{ fontSize: 16, fontStyle: 'italic', color: DARK_GREY }}>
+            Du måste logga in för att kunna skapa och dela listor
+          </Text>
+        </View>
+      )}
       {shoppingLists.length
         ? shoppingLists.map((list) => {
             return (

@@ -20,8 +20,8 @@ const Profile = ({ navigation, userEmail }) => {
     <PageContainer openDrawer={navigation.openDrawer} title={userEmail}>
       <Button
         loading={signingOut}
-        icon={<Icon name="sign-out" type="font-awesome" size={26} />}
-        title="Log out"
+        icon={<Icon name="sign-out" type="font-awesome" size={26} style={{ marginRight: 5 }} />}
+        title="Logga ut"
         onPress={() => signOut()}
         containerStyle={commonStyles.defaultPageButtonContainer}
         buttonStyle={commonStyles.defaultPageButton}></Button>

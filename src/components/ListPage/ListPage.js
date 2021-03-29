@@ -21,15 +21,16 @@ const ListPage = ({ items, addNewItem, checkItem, removeDoneItem }) => {
       <Input
         rightIcon={
           <TouchableOpacity onPress={onAddItem}>
-            <Icon name="tag" type="font-awesome" size={36} color={APP_PRIMARY_COLOR} />
+            <Icon name="tag" type="font-awesome" size={36} />
           </TouchableOpacity>
         }
-        placeholder="Milk... or something else"
+        placeholder="Mjölk... eller kanske något annat"
         value={newItem}
         onChangeText={setNewItem}
         maxLength={MAX_LENGTH_ITEM_INPUT}
         containerStyle={commonStyles.defaultPageInputContainer}
         onSubmitEditing={onAddItem}
+        blurOnSubmit={false}
       />
       <ScrollView style={commonStyles.defaultPageWidth}>
         <View style={commonStyles.scrollViewChildContainer} onStartShouldSetResponder={() => true}>

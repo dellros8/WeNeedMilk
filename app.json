@@ -2,7 +2,7 @@
   "expo": {
     "name": "WeNeedMilk",
     "slug": "WeNeedMilk",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,9 +17,13 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.simondellros.weneedmilk",
+      "buildNumber": "0.1.0",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.simondellros.weneedmilk",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

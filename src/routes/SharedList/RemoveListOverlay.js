@@ -19,18 +19,18 @@ const RemoveListOverlay = ({ isVisible, closeOverlay, sharedListCode, userId, na
   return (
     <Overlay isVisible={isVisible} onBackdropPress={closeOverlay} overlayStyle={commonStyles.overlay}>
       <View style={commonStyles.overlayChildContainer}>
-        <Text style={commonStyles.overlayTitle}>Remove List</Text>
+        <Text style={commonStyles.overlayTitle}>Ta bort lista</Text>
         <Text style={commonStyles.overlayDescription}>
-          Are you sure you want to remove this list from your account?
+          Är du säker på att du vill ta bort denna lista från ditt konto?
         </Text>
         <Button
           onPress={() => removeList()}
-          title="Remove List"
+          title="Ta bort"
           buttonStyle={{ backgroundColor: DARK_RED }}
           containerStyle={commonStyles.overlayPrimaryButtonContainer}></Button>
         <Button
           onPress={closeOverlay}
-          title="Cancel"
+          title="Avbryt"
           type="outline"
           titleStyle={commonStyles.overlaySecondaryButtonTitle}
           buttonStyle={commonStyles.overlaySecondaryButton}

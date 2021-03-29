@@ -29,16 +29,16 @@ const CreateList = ({ navigation, userId }) => {
   };
 
   return (
-    <PageContainer openDrawer={navigation.openDrawer} title="Create List">
+    <PageContainer openDrawer={navigation.openDrawer} title="Skapa ny lista">
       <Input
-        placeholder="Name"
+        placeholder="Namn"
         value={shoppingListName}
         onChangeText={setShoppingListName}
         maxLength={MAX_LENGTH_SHOPPING_LIST_NAME}
         containerStyle={commonStyles.defaultPageInputContainer}
       />
       <Button
-        title="Create List"
+        title="Skapa"
         onPress={() => createShoppingList(shoppingListName)}
         containerStyle={commonStyles.defaultPageButtonContainer}
         buttonStyle={commonStyles.defaultPageButton}></Button>

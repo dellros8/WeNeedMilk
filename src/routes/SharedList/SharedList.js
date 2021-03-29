@@ -5,7 +5,7 @@ import { Icon, Divider } from 'react-native-elements';
 import commonStyles from '../../styles/CommonStyles.js';
 import styles from './SharedListStyle.js';
 import { removeItemFromList, listItemsRef, pushItemToList, updateItemInList } from '../../firebase/functions.js';
-import { DARK_RED } from '../../misc/variables.js';
+import { APP_PRIMARY_COLOR, DARK_RED } from '../../misc/variables.js';
 import { PageContainer, ListPage } from '../../components';
 import { getWeekDay, sortFullItemList } from '../../misc/helpers.js';
 import CopyCodeOverlay from './CopyCodeOverlay.js';
@@ -63,7 +63,7 @@ const SharedList = ({ navigation, shoppingListTitle, sharedListCode, userId }) =
       <Divider style={commonStyles.divider} />
       <View style={styles.listCodeWrapper}>
         <TouchableOpacity onPress={() => setCopyCodeOverlayVisible(true)} style={styles.listCodeButton}>
-          <Icon name="share" type="font-awesome" size={38} />
+          <Icon name="share" type="font-awesome" size={30} />
         </TouchableOpacity>
         <CopyCodeOverlay
           isVisible={copyCodeOverlayVisible}
@@ -71,7 +71,7 @@ const SharedList = ({ navigation, shoppingListTitle, sharedListCode, userId }) =
           sharedListCode={sharedListCode}
         />
         <TouchableOpacity onPress={() => setRemoveListOverlayVisible(true)} style={styles.removeListButton}>
-          <Icon name="trash" type="font-awesome" size={42} />
+          <Icon name="trash" type="font-awesome" size={36} />
         </TouchableOpacity>
         <RemoveListOverlay
           isVisible={removeListOverlayVisible}

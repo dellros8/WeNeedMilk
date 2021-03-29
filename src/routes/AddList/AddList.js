@@ -25,15 +25,15 @@ const AddList = ({ navigation, userId }) => {
   };
 
   return (
-    <PageContainer openDrawer={navigation.openDrawer} title="Add List">
+    <PageContainer openDrawer={navigation.openDrawer} title="Lägg till lista">
       <Input
-        placeholder="Code"
+        placeholder="Kod"
         value={shoppingListCode}
         onChangeText={setShoppingListCode}
         containerStyle={commonStyles.defaultPageInputContainer}
       />
       <Button
-        title="Add List"
+        title="Lägg till"
         onPress={() => addShoppingList()}
         containerStyle={commonStyles.defaultPageButtonContainer}
         buttonStyle={commonStyles.defaultPageButton}></Button>

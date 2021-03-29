@@ -54,7 +54,7 @@ const PersonalList = ({ navigation }) => {
   };
 
   return (
-    <PageContainer openDrawer={navigation.openDrawer} title="Personal List">
+    <PageContainer openDrawer={navigation.openDrawer} title="Personlig lista">
       <ListPage items={items} addNewItem={addNewItem} checkItem={checkItem} removeDoneItem={removeDoneItem} />
     </PageContainer>
   );

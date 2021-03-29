@@ -31,11 +31,11 @@ const Signup = ({ navigation }) => {
   };
 
   return (
-    <PageContainer openDrawer={navigation.openDrawer} title="Sign up">
+    <PageContainer openDrawer={navigation.openDrawer} title="Skapa konto">
       <Input
         leftIcon={<Icon name="envelope" type="font-awesome" size={18} color="black" iconStyle={commonStyles.inputLeftIcon} />}
-        placeholder="Email Address"
-        label="Email Address"
+        placeholder="E-post"
+        label="E-post"
         value={email}
         onChangeText={setEmail}
         containerStyle={commonStyles.defaultPageInputContainer}
@@ -44,9 +44,9 @@ const Signup = ({ navigation }) => {
         leftIcon={
           <Icon name="lock" type="font-awesome" size={24} color="black" iconStyle={commonStyles.inputLeftIcon} />
         }
-        placeholder="Password"
+        placeholder="Lösenord"
         secureTextEntry={true}
-        label="Password"
+        label="Lösenord"
         value={password}
         onChangeText={setPassword}
         containerStyle={commonStyles.defaultPageInputContainer}
@@ -55,9 +55,9 @@ const Signup = ({ navigation }) => {
         leftIcon={
           <Icon name="lock" type="font-awesome" size={24} color="black" iconStyle={commonStyles.inputLeftIcon} />
         }
-        placeholder="Confirm Password"
+        placeholder="Bekräfta lösenord"
         secureTextEntry={true}
-        label="Confirm Password"
+        label="Bekräfta lösenord"
         value={confirmPassword}
         onChangeText={setConfirmPassword}
         containerStyle={commonStyles.defaultPageInputContainer}

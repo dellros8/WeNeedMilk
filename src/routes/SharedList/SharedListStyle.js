@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { GREY } from '../../misc/variables';
 
 const styles = StyleSheet.create({
   listCodeWrapper: {
@@ -23,6 +24,15 @@ const styles = StyleSheet.create({
   },
   removeListButton: {
     alignItems: 'center',
+  },
+  copyCodeDescriptionContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 20,
+    borderStyle: 'dashed',
+    borderWidth: 1,
+    borderColor: GREY,
+    padding: 10,
   },
 });
 
