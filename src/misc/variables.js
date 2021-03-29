@@ -1,5 +1,5 @@
 // lengths
-export const MAX_LENGTH_ITEM_INPUT = 36;
+export const MAX_LENGTH_ITEM_INPUT = 62;
 export const MAX_LENGTH_SHOPPING_LIST_NAME = 24;
 
 // colors
