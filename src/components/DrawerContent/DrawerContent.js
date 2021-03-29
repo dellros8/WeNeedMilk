@@ -3,8 +3,8 @@ import { View } from 'react-native';
 import { Icon, ListItem, Divider, Text } from 'react-native-elements';
 
 import { myListsRef } from '../../firebase/functions.js';
-import { InformationText } from '../../components';
 import { APP_PRIMARY_COLOR, DARK_GREY, GREY, LIGHT_GREY } from '../../misc/variables.js';
+import InformationText from '../InformationText/InformationText.js';
 import DrawerItem from './DrawerItem.js';
 import styles from './DrawerContentStyle.js';
 import commonStyles from '../../styles/CommonStyles.js';
