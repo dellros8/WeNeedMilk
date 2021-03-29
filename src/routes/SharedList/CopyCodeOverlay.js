@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { Button, Text, Icon, Overlay } from 'react-native-elements';
 
-import { APP_PRIMARY_COLOR, GREY, LIGHT_GREY } from '../../misc/variables.js';
 import commonStyles from '../../styles/CommonStyles.js';
 import { copyToClipboard } from '../../misc/helpers.js';
 import styles from './SharedListStyle.js';

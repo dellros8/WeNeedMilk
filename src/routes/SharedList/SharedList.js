@@ -5,7 +5,6 @@ import { Icon, Divider } from 'react-native-elements';
 import commonStyles from '../../styles/CommonStyles.js';
 import styles from './SharedListStyle.js';
 import { removeItemFromList, listItemsRef, pushItemToList, updateItemInList } from '../../firebase/functions.js';
-import { APP_PRIMARY_COLOR, DARK_RED } from '../../misc/variables.js';
 import { PageContainer, ListPage } from '../../components';
 import { getWeekDay, sortFullItemList } from '../../misc/helpers.js';
 import CopyCodeOverlay from './CopyCodeOverlay.js';

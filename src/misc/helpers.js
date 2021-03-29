@@ -1,4 +1,3 @@
-import { Keyboard } from 'react-native';
 import Clipboard from 'expo-clipboard';
 
 export const guidGenerator = () => {

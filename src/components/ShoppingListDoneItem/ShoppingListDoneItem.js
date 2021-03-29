@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import { Button, Text, Icon } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 

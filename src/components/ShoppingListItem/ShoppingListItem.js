@@ -1,6 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
-import { View } from 'react-native';
 import { Button, Text, Icon } from 'react-native-elements';
 import { APP_PRIMARY_COLOR_LIGHT } from '../../misc/variables.js';
 
