@@ -2,19 +2,16 @@ import React from 'react';
 import { View } from 'react-native';
 import { Button, Text, Overlay } from 'react-native-elements';
 
-import { firebaseDB } from '../../firebase/config.js';
+import { removeList } from '../../firebase/functions.js';
 import { DARK_RED } from '../../misc/variables.js';
 import commonStyles from '../../styles/CommonStyles.js';
 
 const RemoveListOverlay = ({ isVisible, closeOverlay, sharedListCode, userId, navigateToPersonalList }) => {
-  const removeList = () => {
-    firebaseDB
-      .ref(`users/${userId}/myshoppinglists/${sharedListCode}`)
-      .remove()
-      .then(() => {
-        navigateToPersonalList();
-        closeOverlay();
-      });
+  const onRemoveList = () => {
+    removeList(sharedListCode, userId).then(() => {
+      navigateToPersonalList();
+      closeOverlay();
+    });
   };
   return (
     <Overlay isVisible={isVisible} onBackdropPress={closeOverlay} overlayStyle={commonStyles.overlay}>
@@ -24,7 +21,7 @@ const RemoveListOverlay = ({ isVisible, closeOverlay, sharedListCode, userId, na
           Är du säker på att du vill ta bort denna lista från ditt konto?
         </Text>
         <Button
-          onPress={() => removeList()}
+          onPress={() => onRemoveList()}
           title="Ta bort"
           buttonStyle={{ backgroundColor: DARK_RED }}
           containerStyle={commonStyles.overlayPrimaryButtonContainer}></Button>

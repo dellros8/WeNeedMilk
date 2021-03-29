@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Input, Text, Icon } from 'react-native-elements';
 
-import firebase from '../../firebase/config.js';
+import { signIn } from '../../firebase/functions.js';
 import { PageContainer } from '../../components';
-import { APP_PRIMARY_COLOR } from '../../misc/variables.js';
 import commonStyles from '../../styles/CommonStyles.js';
 
 const styles = StyleSheet.create({
@@ -21,13 +20,14 @@ const Login = ({ navigation }) => {
 
   const login = () => {
     setLoggingIn(true);
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch((error) => {
-        setError(error.message);
+    signIn(email, password)
+      .then(() => {
+        setLoggingIn(false);
       })
-      .then(() => setLoggingIn(false));
+      .catch((error) => {
+        setLoggingIn(false);
+        setError(error.message);
+      });
   };
 
   return (
@@ -37,7 +37,6 @@ const Login = ({ navigation }) => {
           <Icon name="envelope" type="font-awesome" size={18} color="black" iconStyle={commonStyles.inputLeftIcon} />
         }
         placeholder="E-post"
-        label="E-post"
         value={email}
         onChangeText={setEmail}
         containerStyle={commonStyles.defaultPageInputContainer}
@@ -48,7 +47,6 @@ const Login = ({ navigation }) => {
         }
         placeholder="Lösenord"
         secureTextEntry={true}
-        label="Lösenord"
         value={password}
         onChangeText={setPassword}
         containerStyle={commonStyles.defaultPageInputContainer}

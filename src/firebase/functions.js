@@ -1,11 +1,23 @@
 import { firebaseDB, firebaseAuth } from './config.js';
 
+export const signUp = (email, password) => {
+  return firebaseAuth.createUserWithEmailAndPassword(email, password);
+};
+
 export const signOut = () => {
   return firebaseAuth.signOut();
 };
 
+export const signIn = (email, password) => {
+  return firebaseAuth.signInWithEmailAndPassword(email, password);
+};
+
 export const getList = (listCode) => {
   return firebaseDB.ref(`shoppinglists/${listCode}`).once('value');
+};
+
+export const setUser = (userId, email) => {
+  return firebaseDB.ref('users/' + userId).set({ userId, email });
 };
 
 export const setListToUser = (listCode, listName, userId) => {
@@ -25,6 +37,10 @@ export const listItemsRef = (listCode) => {
 
 export const myListsRef = (userId) => {
   return firebaseDB.ref(`users/${userId}/myshoppinglists`);
+};
+
+export const removeList = (listCode, userId) => {
+  return firebaseDB.ref(`users/${userId}/myshoppinglists/${listCode}`).remove();
 };
 
 export const pushItemToList = (listCode, itemObj) => {
