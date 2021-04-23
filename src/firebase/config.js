@@ -7,12 +7,10 @@ const firebaseConfig = {
   storageBucket: 'weneedmilk-9c52f.appspot.com',
   messagingSenderId: '204115003664',
   appId: '1:204115003664:web:742b1033476d516402fd95',
-  measurementId: 'G-8D74RF8BBX',
 };
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+firebase.initializeApp(firebaseConfig);
+  
 const firebaseAuth = firebase.auth();
 const firebaseDB = firebase.database();
 
