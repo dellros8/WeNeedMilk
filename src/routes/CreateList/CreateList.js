@@ -3,7 +3,7 @@ import { Button, Input } from 'react-native-elements';
 
 import { setList, setListToUser } from '../../firebase/functions.js';
 import { MAX_LENGTH_SHOPPING_LIST_NAME } from '../../misc/variables.js';
-import { PageContainer } from '../../components';
+import { InformationText, PageContainer } from '../../components';
 import { guidGenerator } from '../../misc/helpers.js';
 import commonStyles from '../../styles/CommonStyles.js';
 
@@ -37,6 +37,10 @@ const CreateList = ({ navigation, userId }) => {
         maxLength={MAX_LENGTH_SHOPPING_LIST_NAME}
         containerStyle={commonStyles.defaultPageInputContainer}
       />
+      <InformationText>
+        När du har skapat listan och är inne på den, klicka i vänster nedre hörn för att kopiera en kod. Personen
+        du skickar koden till ska sedan klistra in den under "Lägg till lista" i menyn
+      </InformationText>
       <Button
         title="Skapa"
         onPress={() => createShoppingList(shoppingListName)}
