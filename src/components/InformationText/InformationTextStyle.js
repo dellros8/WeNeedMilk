@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontStyle: 'italic',
     color: DARK_GREY,
+    width: '90%',
   },
 });
 
