@@ -62,7 +62,7 @@ const SharedList = ({ navigation, shoppingListTitle, sharedListCode, userId }) =
       <Divider style={commonStyles.divider} />
       <View style={styles.listCodeWrapper}>
         <TouchableOpacity onPress={() => setCopyCodeOverlayVisible(true)} style={styles.listCodeButton}>
-          <Icon name="share" type="font-awesome" size={30} />
+          <Icon name="share-square-o" type="font-awesome" size={40} />
         </TouchableOpacity>
         <CopyCodeOverlay
           isVisible={copyCodeOverlayVisible}
